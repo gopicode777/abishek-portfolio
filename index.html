@@ -3,428 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABISHEK — Photographer &amp; Graphic Designer</title>
-<meta name="description" content="ABISHEK — Professional Photographer &amp; Graphic Designer. Photography is not just capturing moments, it is preserving emotions.">
+<title>ABISHEK — Photographer &amp; Digital Artist</title>
+<meta name="description" content="ABISHEK — Professional Photographer &amp; Digital Artist. Photography is not just capturing moments, it is preserving emotions.">
 
+<!-- Fonts: General Sans (primary + secondary heading fallback) + Lexend (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<!--
+  NOTE: "TT Hoves Pro Trial" is a licensed commercial font and cannot be
+  loaded from a free CDN. Per the brief, it automatically falls back to
+  General Sans (see --f-head-secondary in style.css). If the client later
+  purchases a license, host the font files and update that one variable.
+-->
+
+<link rel="stylesheet" href="style.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-
-<style>
-:root{
-  --bg:#F7F8FA;
-  --bg2:#EEF2F7;
-  --accent:#295BFF;
-  --accent-2:#FFB703;
-  --text:#101828;
-  --text-light:#667085;
-  --border:rgba(0,0,0,.08);
-  --white:#ffffff;
-  --shadow-sm: 0 2px 12px rgba(16,24,40,.05);
-  --shadow-md: 0 12px 40px rgba(16,24,40,.08);
-  --shadow-lg: 0 24px 70px rgba(16,24,40,.14);
-  --ease: cubic-bezier(.16,.84,.44,1);
-  --f-head:'Clash Display', 'Inter', sans-serif;
-  --f-body:'Montserrat', sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{background:var(--bg);}
-html.lenis, html.lenis body{height:auto;}
-.lenis.lenis-smooth{scroll-behavior:auto!important;}
-body{
-  font-family:var(--f-body);
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-  cursor:none;
-  -webkit-font-smoothing:antialiased;
-}
-@media (max-width:900px){ body{cursor:auto;} }
-img{max-width:100%;display:block;}
-a{color:inherit;text-decoration:none;}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
-::selection{background:var(--accent);color:#fff;}
-.wrap{max-width:1320px;margin:0 auto;padding:0 40px;}
-@media (max-width:640px){.wrap{padding:0 22px;}}
-
-h1,h2,h3,h4{font-family:var(--f-head);font-weight:600;letter-spacing:-0.02em;line-height:1.05;}
-.eyebrow{
-  font-family:var(--f-body);
-  font-size:12.5px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--accent);
-  font-weight:600;
-  display:flex;align-items:center;gap:10px;
-}
-.eyebrow::before{content:'';width:26px;height:1px;background:var(--accent);display:inline-block;}
-.section-tag{color:var(--text-light);font-size:16px;max-width:520px;line-height:1.6;}
-
-/* ===== custom cursor ===== */
-#cursor-dot,#cursor-ring{
-  position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-}
-#cursor-dot{width:6px;height:6px;background:var(--accent);}
-#cursor-ring{width:38px;height:38px;border:1px solid rgba(41,91,255,.45);transition:width .3s var(--ease),height .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);}
-#cursor-ring.big{width:96px;height:96px;background:rgba(41,91,255,.06);border-color:rgba(41,91,255,.2);}
-#cursor-ring.view::after{content:'View';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;}
-#cursor-ring.view{display:flex;align-items:center;justify-content:center;}
-@media (max-width:900px){#cursor-dot,#cursor-ring{display:none;}}
-
-/* ===== loader ===== */
-#loader{
-  position:fixed;inset:0;z-index:10000;background:var(--bg);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px;
-}
-.shutter{position:relative;width:110px;height:110px;}
-.shutter svg{width:100%;height:100%;}
-.shutter-blade{transform-origin:75px 75px;transition:transform 1.1s var(--ease);}
-#loader .loader-label{font-family:var(--f-head);font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--text-light);}
-#loader .loader-pct{font-family:var(--f-head);font-size:13px;color:var(--accent);letter-spacing:.15em;}
-
-/* ===== nav ===== */
-header{position:fixed;top:0;left:0;right:0;z-index:900;padding:26px 0;transition:padding .4s var(--ease),background .4s var(--ease),box-shadow .4s var(--ease);}
-header .navbar{
-  max-width:1320px;margin:0 auto;padding:0 40px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-@media (max-width:640px){header .navbar{padding:0 22px;}}
-header.scrolled{padding:14px 0;}
-header.scrolled .nav-inner{
-  background:rgba(247,248,250,.72);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
-  box-shadow:var(--shadow-sm);border:1px solid var(--border);
-}
-.nav-inner{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 10px 10px 24px;border-radius:100px;transition:all .4s var(--ease);}
-.logo{font-family:var(--f-head);font-size:20px;font-weight:600;letter-spacing:.04em;}
-.logo span{color:var(--accent);}
-.nav-links{display:flex;gap:2px;list-style:none;align-items:center;}
-.nav-links a{
-  position:relative;padding:10px 18px;font-size:14px;font-weight:500;color:var(--text-light);border-radius:100px;transition:color .3s;
-}
-.nav-links a:hover,.nav-links a.active{color:var(--text);}
-.nav-links a.active::after{
-  content:'';position:absolute;left:18px;right:18px;bottom:5px;height:2px;background:var(--accent);border-radius:2px;
-}
-.nav-cta{
-  background:var(--text);color:#fff;padding:11px 24px;border-radius:100px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px;
-}
-.nav-cta:hover{background:var(--accent);}
-.burger{display:none;width:44px;height:44px;border-radius:50%;background:var(--white);border:1px solid var(--border);align-items:center;justify-content:center;flex-direction:column;gap:5px;}
-.burger span{width:18px;height:2px;background:var(--text);display:block;transition:.3s;}
-@media (max-width:900px){
-  .nav-links,.nav-cta{display:none;}
-  .burger{display:flex;}
-}
-#mobile-menu{
-  position:fixed;inset:0;z-index:950;background:var(--bg);display:flex;flex-direction:column;
-  justify-content:center;padding:40px;transform:translateY(-100%);transition:transform .6s var(--ease);
-}
-#mobile-menu.open{transform:translateY(0);}
-#mobile-menu a{font-family:var(--f-head);font-size:38px;padding:14px 0;border-bottom:1px solid var(--border);}
-#mobile-menu .mm-close{position:absolute;top:30px;right:30px;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
-
-/* ===== hero ===== */
-#hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding-top:120px;padding-bottom:60px;}
-.hero-bg-lines{position:absolute;inset:0;opacity:.5;pointer-events:none;}
-.hero-grid{
-  display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;width:100%;position:relative;z-index:2;
-}
-@media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:70px;}}
-.hero-eyebrow{margin-bottom:26px;}
-.hero-title{font-size:clamp(46px,7vw,92px);overflow:hidden;}
-.hero-title .line{display:block;overflow:hidden;}
-.hero-title .line span{display:inline-block;transform:translateY(110%);}
-.hero-role{
-  font-family:var(--f-head);font-size:clamp(20px,2.4vw,28px);color:var(--accent);margin-top:6px;font-weight:500;
-}
-.hero-desc{max-width:460px;color:var(--text-light);font-size:17px;line-height:1.7;margin-top:26px;}
-.hero-btns{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
-.btn{
-  position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:100px;font-size:14.5px;font-weight:500;
-  overflow:hidden;isolation:isolate;
-}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-primary::before{content:'';position:absolute;inset:0;background:#1b46e0;transform:translateY(101%);transition:transform .45s var(--ease);z-index:-1;}
-.btn-primary:hover::before{transform:translateY(0);}
-.btn-outline{border:1px solid var(--border);color:var(--text);background:var(--white);}
-.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
-.magnetic{will-change:transform;}
-
-.hero-visual{position:relative;height:560px;display:flex;align-items:center;justify-content:center;}
-@media (max-width:980px){.hero-visual{height:420px;}}
-.hero-portrait-ring{
-  position:absolute;width:420px;height:420px;border-radius:50%;
-  background:conic-gradient(from 90deg, var(--accent), var(--accent-2), #295BFF33, var(--accent));
-  filter:blur(2px);opacity:.55;animation:spin 16s linear infinite;
-}
-@media (max-width:980px){.hero-portrait-ring{width:320px;height:320px;}}
-@keyframes spin{to{transform:rotate(360deg);}}
-.hero-portrait-frame{
-  position:relative;width:380px;height:460px;border-radius:190px 190px 24px 24px;overflow:hidden;
-  box-shadow:var(--shadow-lg);border:6px solid var(--white);
-}
-@media (max-width:980px){.hero-portrait-frame{width:290px;height:360px;border-radius:145px 145px 20px 20px;}}
-.hero-portrait-frame img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);}
-.float-icon{
-  position:absolute;background:var(--white);border-radius:50%;box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;color:var(--accent);
-}
-.float-icon svg{width:20px;height:20px;}
-.fi-1{width:64px;height:64px;top:6%;left:-2%;}
-.fi-2{width:52px;height:52px;bottom:14%;right:-4%;color:var(--accent-2);}
-.fi-3{width:44px;height:44px;top:44%;right:6%;}
-.hero-particle{position:absolute;border-radius:50%;background:var(--accent);opacity:.35;pointer-events:none;}
-.hero-scroll{
-  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--text-light);font-size:11px;letter-spacing:.2em;text-transform:uppercase;z-index:3;
-}
-.hero-scroll .line{width:1px;height:38px;background:var(--border);position:relative;overflow:hidden;}
-.hero-scroll .line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:scrollLine 2s ease-in-out infinite;}
-@keyframes scrollLine{50%{top:100%;}100%{top:100%;}}
-
-/* ===== section shell ===== */
-section{position:relative;padding:140px 0;}
-@media (max-width:768px){section{padding:90px 0;}}
-.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:70px;}
-@media (max-width:768px){.section-head{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:50px;}}
-.section-title{font-size:clamp(34px,4.6vw,56px);margin-top:16px;}
-
-/* ===== about ===== */
-#about{background:var(--bg2);}
-.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:start;}
-@media (max-width:980px){.about-grid{grid-template-columns:1fr;gap:60px;}}
-.about-portrait{position:relative;}
-.about-portrait-img{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/5;}
-.about-portrait-img img{width:100%;height:100%;object-fit:cover;}
-.about-badge{
-  position:absolute;bottom:-28px;left:-28px;background:var(--white);border-radius:20px;box-shadow:var(--shadow-md);
-  padding:20px 26px;display:flex;align-items:center;gap:14px;border:1px solid var(--border);
-}
-@media (max-width:640px){.about-badge{left:0;bottom:-20px;padding:16px 20px;}}
-.badge-ring{width:52px;height:52px;position:relative;flex:none;}
-.badge-ring svg{transform:rotate(-90deg);}
-.badge-ring circle{fill:none;stroke-width:5;}
-.badge-num{font-family:var(--f-head);font-size:22px;}
-.badge-label{font-size:12px;color:var(--text-light);max-width:110px;line-height:1.3;}
-
-.about-cards{display:flex;flex-direction:column;gap:14px;}
-.a-card{
-  background:var(--white);border:1px solid var(--border);border-radius:20px;padding:26px 28px;cursor:pointer;
-  box-shadow:var(--shadow-sm);transition:box-shadow .35s var(--ease),border-color .35s;
-}
-.a-card:hover{box-shadow:var(--shadow-md);}
-.a-card.open{border-color:rgba(41,91,255,.25);}
-.a-card-top{display:flex;align-items:center;justify-content:space-between;gap:20px;}
-.a-card-left{display:flex;align-items:center;gap:18px;}
-.a-num{font-family:var(--f-head);font-size:13px;color:var(--accent);width:30px;}
-.a-title{font-family:var(--f-head);font-size:19px;font-weight:500;}
-.a-plus{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);flex:none;display:flex;align-items:center;justify-content:center;transition:transform .4s var(--ease),background .3s;position:relative;}
-.a-plus::before,.a-plus::after{content:'';position:absolute;background:var(--text);transition:transform .35s var(--ease);}
-.a-plus::before{width:11px;height:1.4px;}
-.a-plus::after{width:1.4px;height:11px;}
-.a-card.open .a-plus{background:var(--accent);border-color:var(--accent);}
-.a-card.open .a-plus::before,.a-card.open .a-plus::after{background:#fff;}
-.a-card.open .a-plus::after{transform:rotate(90deg) scaleY(0);}
-.a-body{max-height:0;overflow:hidden;transition:max-height .5s var(--ease);}
-.a-body-in{padding-top:18px;color:var(--text-light);font-size:15px;line-height:1.75;}
-
-.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px;}
-@media (max-width:640px){.counters{grid-template-columns:repeat(2,1fr);}}
-.counter-item{text-align:left;}
-.counter-num{font-family:var(--f-head);font-size:clamp(30px,4vw,44px);color:var(--text);display:flex;align-items:baseline;}
-.counter-num span.suffix{color:var(--accent);font-size:.5em;margin-left:2px;}
-.counter-label{font-size:13px;color:var(--text-light);margin-top:6px;}
-
-/* ===== skills ===== */
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
-@media (max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
-@media (max-width:480px){.skills-grid{grid-template-columns:1fr;}}
-.skill-card{
-  background:var(--white);border:1px solid var(--border);border-radius:22px;padding:32px 26px;text-align:center;
-  box-shadow:var(--shadow-sm);position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease);
-}
-.skill-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
-.skill-ring{width:104px;height:104px;margin:0 auto 18px;position:relative;}
-.skill-ring svg{transform:rotate(-90deg);width:100%;height:100%;}
-.skill-ring circle{fill:none;stroke-width:6;}
-.skill-ring .bg-c{stroke:var(--bg2);}
-.skill-ring .fg-c{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset 1.4s var(--ease);}
-.skill-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-head);font-size:20px;}
-.skill-name{font-family:var(--f-head);font-size:16px;font-weight:500;}
-.skill-desc{
-  font-size:12.5px;color:var(--text-light);max-height:0;overflow:hidden;transition:max-height .4s var(--ease),margin .4s var(--ease);line-height:1.5;
-}
-.skill-card:hover .skill-desc{max-height:60px;margin-top:10px;}
-
-/* ===== portfolio ===== */
-#portfolio{background:var(--bg2);}
-.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:52px;}
-.filter-btn{
-  padding:11px 22px;border-radius:100px;border:1px solid var(--border);font-size:13.5px;font-weight:500;color:var(--text-light);
-  background:var(--white);transition:all .3s var(--ease);
-}
-.filter-btn:hover{color:var(--text);}
-.filter-btn.active{background:var(--text);color:#fff;border-color:var(--text);}
-
-.masonry{column-count:3;column-gap:20px;}
-@media (max-width:980px){.masonry{column-count:2;}}
-@media (max-width:600px){.masonry{column-count:1;}}
-.g-card{
-  break-inside:avoid;margin-bottom:20px;border-radius:20px;overflow:hidden;position:relative;background:var(--white);
-  box-shadow:var(--shadow-sm);cursor:pointer;transition:box-shadow .4s var(--ease);
-}
-.g-card:hover{box-shadow:var(--shadow-lg);}
-.g-card-img{overflow:hidden;position:relative;}
-.g-card-img img{width:100%;display:block;transition:transform .7s var(--ease);}
-.g-card:hover .g-card-img img{transform:scale(1.08);}
-.g-overlay{
-  position:absolute;inset:0;background:linear-gradient(to top,rgba(16,24,40,.78) 0%,rgba(16,24,40,.15) 45%,transparent 70%);
-  opacity:0;transition:opacity .4s var(--ease);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;color:#fff;
-}
-.g-card:hover .g-overlay{opacity:1;}
-.g-cat{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:var(--accent-2);font-weight:600;}
-.g-title{font-family:var(--f-head);font-size:19px;margin-top:6px;}
-.g-loc{font-size:12.5px;opacity:.8;margin-top:4px;display:flex;align-items:center;gap:6px;}
-.g-dots{
-  position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);
-  display:flex;align-items:center;justify-content:center;z-index:3;backdrop-filter:blur(6px);
-}
-.g-dots svg{width:16px;height:16px;color:var(--text);}
-.g-menu{
-  position:absolute;top:56px;right:14px;background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);width:170px;
-  padding:8px;z-index:5;opacity:0;transform:translateY(-8px);pointer-events:none;transition:.25s var(--ease);
-}
-.g-menu.open{opacity:1;transform:translateY(0);pointer-events:auto;}
-.g-menu button{width:100%;text-align:left;padding:10px 12px;border-radius:8px;font-size:13.5px;display:flex;align-items:center;gap:10px;}
-.g-menu button:hover{background:var(--bg2);}
-.view-more-wrap{text-align:center;margin-top:50px;}
-
-/* ===== modal ===== */
-#modal-backdrop{
-  position:fixed;inset:0;background:rgba(16,24,40,.55);backdrop-filter:blur(10px);z-index:2000;
-  display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;pointer-events:none;transition:opacity .4s var(--ease);
-}
-#modal-backdrop.open{opacity:1;pointer-events:auto;}
-#modal{
-  background:var(--white);max-width:1000px;width:100%;max-height:88vh;overflow-y:auto;border-radius:28px;
-  display:grid;grid-template-columns:1.1fr .9fr;transform:scale(.94) translateY(20px);opacity:0;transition:all .45s var(--ease);
-}
-#modal-backdrop.open #modal{transform:scale(1) translateY(0);opacity:1;}
-@media (max-width:800px){#modal{grid-template-columns:1fr;}}
-.modal-img{background:var(--bg2);}
-.modal-img img{width:100%;height:100%;object-fit:cover;max-height:88vh;}
-.modal-info{padding:40px;}
-.modal-close{
-  position:absolute;top:20px;right:20px;width:42px;height:42px;border-radius:50%;background:#fff;box-shadow:var(--shadow-md);
-  display:flex;align-items:center;justify-content:center;z-index:10;
-}
-.modal-cat{color:var(--accent);font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;}
-.modal-title{font-size:30px;margin-top:10px;}
-.modal-desc{color:var(--text-light);font-size:14.5px;line-height:1.7;margin-top:16px;}
-.modal-story{background:var(--bg2);border-radius:16px;padding:18px 20px;margin-top:22px;font-size:14px;line-height:1.7;color:var(--text);}
-.modal-story b{color:var(--accent);display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
-.modal-specs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;padding-top:26px;border-top:1px solid var(--border);}
-.spec-item{}
-.spec-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-light);}
-.spec-val{font-size:14.5px;margin-top:4px;font-weight:500;}
-.modal-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;}
-.tag{background:var(--bg2);padding:7px 14px;border-radius:100px;font-size:12px;color:var(--text-light);}
-
-/* ===== projects ===== */
-.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-@media (max-width:980px){.projects-grid{grid-template-columns:1fr;}}
-.p-card{
-  background:var(--white);border-radius:24px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--border);
-  transition:box-shadow .4s var(--ease),transform .4s var(--ease);
-}
-.p-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-6px);}
-.p-cover{aspect-ratio:16/11;overflow:hidden;}
-.p-cover img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
-.p-card:hover .p-cover img{transform:scale(1.06);}
-.p-body{padding:26px;}
-.p-role{font-size:12px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
-.p-title{font-size:21px;margin-top:8px;}
-.p-desc{font-size:14px;color:var(--text-light);margin-top:10px;line-height:1.6;}
-.p-meta{display:flex;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid var(--border);font-size:12px;color:var(--text-light);}
-.p-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13.5px;font-weight:600;color:var(--text);}
-.p-link svg{width:14px;height:14px;transition:transform .3s var(--ease);}
-.p-card:hover .p-link svg{transform:translate(4px,-4px);}
-
-/* ===== testimonials ===== */
-#testimonials{background:var(--bg2);overflow:hidden;}
-.t-track-wrap{position:relative;}
-.t-track{display:flex;gap:24px;transition:transform .6s var(--ease);}
-.t-card{
-  min-width:calc(33.333% - 16px);background:rgba(255,255,255,.6);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.7);
-  border-radius:24px;padding:34px;box-shadow:var(--shadow-sm);
-}
-@media (max-width:980px){.t-card{min-width:calc(50% - 12px);}}
-@media (max-width:640px){.t-card{min-width:100%;}}
-.t-stars{display:flex;gap:3px;color:var(--accent-2);margin-bottom:18px;}
-.t-stars svg{width:16px;height:16px;}
-.t-quote{font-size:15.5px;line-height:1.75;color:var(--text);}
-.t-person{display:flex;align-items:center;gap:14px;margin-top:26px;}
-.t-avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;flex:none;}
-.t-avatar img{width:100%;height:100%;object-fit:cover;}
-.t-name{font-family:var(--f-head);font-size:15px;font-weight:500;}
-.t-role{font-size:12.5px;color:var(--text-light);}
-.t-controls{display:flex;gap:12px;margin-top:44px;justify-content:center;}
-.t-arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:var(--white);transition:.3s;}
-.t-arrow:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
-.t-arrow svg{width:18px;height:18px;}
-
-/* ===== contact ===== */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
-@media (max-width:980px){.contact-grid{grid-template-columns:1fr;gap:50px;}}
-.contact-info-list{display:flex;flex-direction:column;gap:18px;margin-top:36px;}
-.ci-item{display:flex;align-items:center;gap:18px;padding:18px;background:var(--white);border:1px solid var(--border);border-radius:18px;transition:.3s;}
-.ci-item:hover{border-color:var(--accent);transform:translateX(6px);}
-.ci-icon{width:46px;height:46px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--accent);flex:none;}
-.ci-icon svg{width:19px;height:19px;}
-.ci-label{font-size:11.5px;color:var(--text-light);text-transform:uppercase;letter-spacing:.08em;}
-.ci-val{font-size:15px;font-weight:500;margin-top:2px;}
-.social-row{display:flex;gap:12px;margin-top:28px;}
-.social-btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:var(--white);transition:.3s;}
-.social-btn:hover{background:var(--text);color:#fff;border-color:var(--text);}
-.social-btn svg{width:17px;height:17px;}
-
-.contact-form{background:var(--white);border-radius:28px;padding:40px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media (max-width:480px){.f-row{grid-template-columns:1fr;}}
-.f-group{margin-bottom:20px;}
-.f-group label{font-size:12px;color:var(--text-light);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:block;}
-.f-group input,.f-group textarea,.f-group select{
-  width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--bg);font-family:inherit;font-size:14.5px;
-  transition:border-color .3s;
-}
-.f-group input:focus,.f-group textarea:focus,.f-group select:focus{outline:none;border-color:var(--accent);}
-.send-btn{width:100%;justify-content:center;margin-top:6px;}
-.send-btn .icon-send{width:16px;height:16px;transition:transform .3s var(--ease);}
-.send-btn:hover .icon-send{transform:translate(4px,-4px);}
-.form-success{display:none;text-align:center;padding:30px 0;}
-.form-success.show{display:block;}
-.form-success svg{width:56px;height:56px;color:var(--accent);margin:0 auto 16px;}
-
-/* ===== footer ===== */
-footer{background:var(--text);color:#fff;padding:80px 0 30px;}
-.footer-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.1);}
-.footer-cta-title{font-size:clamp(30px,4.6vw,56px);max-width:640px;}
-.footer-cta-title span{color:var(--accent-2);}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:16px;color:rgba(255,255,255,.5);font-size:13px;}
-.footer-bottom a{color:rgba(255,255,255,.7);}
-.footer-links{display:flex;gap:24px;}
-
-/* ===== reveal helper ===== */
-.reveal{opacity:0;transform:translateY(36px);}
-
-@media (prefers-reduced-motion: reduce){
-  *{animation:none!important;transition:none!important;}
-}
-</style>
+<!-- Supabase client for the feedback system (see script.js for config) -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -434,7 +34,7 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
 <div id="loader">
   <div class="shutter">
     <svg viewBox="0 0 150 150">
-      <g id="blades" fill="#101828">
+      <g id="blades" fill="#111827">
         <path class="shutter-blade" d="M75 75 L75 8 A67 67 0 0 1 132 45 Z"/>
         <path class="shutter-blade" d="M75 75 L132 45 A67 67 0 0 1 132 105 Z"/>
         <path class="shutter-blade" d="M75 75 L132 105 A67 67 0 0 1 75 142 Z"/>
@@ -442,7 +42,7 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
         <path class="shutter-blade" d="M75 75 L18 105 A67 67 0 0 1 18 45 Z"/>
         <path class="shutter-blade" d="M75 75 L18 45 A67 67 0 0 1 75 8 Z"/>
       </g>
-      <circle cx="75" cy="75" r="67" fill="none" stroke="#295BFF" stroke-width="1.5" opacity=".35"/>
+      <circle cx="75" cy="75" r="67" fill="none" stroke="#2962FF" stroke-width="1.5" opacity=".35"/>
     </svg>
   </div>
   <div class="loader-label">ABISHEK</div>
@@ -458,7 +58,7 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
         <li><a href="#about" class="nav-link" data-target="about">About</a></li>
         <li><a href="#portfolio" class="nav-link" data-target="portfolio">Photography</a></li>
         <li><a href="#projects" class="nav-link" data-target="projects">Projects</a></li>
-        <li><a href="#testimonials" class="nav-link" data-target="testimonials">Testimonials</a></li>
+        <li><a href="#testimonials" class="nav-link" data-target="testimonials">Feedback</a></li>
         <li><a href="#contact" class="nav-link" data-target="contact">Contact</a></li>
       </ul>
       <a href="#contact" class="nav-cta magnetic">Hire Me
@@ -470,31 +70,31 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
 </header>
 
 <div id="mobile-menu">
-  <button class="mm-close" id="mm-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#101828" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="mm-close" id="mm-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <a href="#hero" class="mm-link">Home</a>
   <a href="#about" class="mm-link">About</a>
   <a href="#portfolio" class="mm-link">Photography</a>
   <a href="#projects" class="mm-link">Projects</a>
-  <a href="#testimonials" class="mm-link">Testimonials</a>
+  <a href="#testimonials" class="mm-link">Feedback</a>
   <a href="#contact" class="mm-link">Contact</a>
 </div>
 
 <!-- ===================== HERO ===================== -->
 <section id="hero">
   <svg class="hero-bg-lines" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice">
-    <circle cx="1150" cy="200" r="180" fill="none" stroke="#101828" stroke-width="1" opacity=".05"/>
-    <circle cx="1150" cy="200" r="130" fill="none" stroke="#101828" stroke-width="1" opacity=".06"/>
-    <circle cx="150" cy="760" r="220" fill="none" stroke="#295BFF" stroke-width="1" opacity=".06"/>
-    <path d="M1230 120 L1230 280 M1080 200 L1220 200" stroke="#101828" stroke-width="1" opacity=".08"/>
-    <rect x="1180" y="150" width="100" height="100" rx="14" fill="none" stroke="#101828" stroke-width="1" opacity=".06"/>
+    <circle cx="1150" cy="200" r="180" fill="none" stroke="#111827" stroke-width="1" opacity=".05"/>
+    <circle cx="1150" cy="200" r="130" fill="none" stroke="#111827" stroke-width="1" opacity=".06"/>
+    <circle cx="150" cy="760" r="220" fill="none" stroke="#2962FF" stroke-width="1" opacity=".06"/>
+    <path d="M1230 120 L1230 280 M1080 200 L1220 200" stroke="#111827" stroke-width="1" opacity=".08"/>
+    <rect x="1180" y="150" width="100" height="100" rx="14" fill="none" stroke="#111827" stroke-width="1" opacity=".06"/>
   </svg>
   <div class="wrap hero-grid">
     <div>
-      <div class="hero-eyebrow">Photography &amp;  Digital Arts</div>
+      <div class="hero-eyebrow">Photography &amp; Digital Art Studio</div>
       <h1 class="hero-title">
         <span class="line"><span>ABISHEK</span></span>
       </h1>
-      <div class="hero-role">Professional Photographer &amp; Graphic Designer</div>
+      <div class="hero-role">Professional Photographer &amp; Digital Artist</div>
       <p class="hero-desc">Photography is not just capturing moments. It is preserving emotions — every frame designed with intention, every story told with light.</p>
       <div class="hero-btns">
         <a href="#portfolio" class="btn btn-primary magnetic">View Portfolio
@@ -526,7 +126,7 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
         </div>
         <div class="about-badge">
           <div class="badge-ring">
-            <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" stroke="#EEF2F7"/><circle cx="30" cy="30" r="26" stroke="#295BFF" stroke-dasharray="163" stroke-dashoffset="20" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" stroke="#EEF2F7"/><circle cx="30" cy="30" r="26" stroke="#2962FF" stroke-dasharray="163" stroke-dashoffset="20" stroke-linecap="round"/></svg>
           </div>
           <div>
             <div class="badge-num">8+ yrs</div>
@@ -538,7 +138,7 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
       <div>
         <div class="eyebrow reveal">About Abishek</div>
         <h2 class="section-title reveal" style="margin-bottom:26px;">Where craft meets<br>quiet obsession.</h2>
-        <p class="section-tag reveal" style="max-width:100%;margin-bottom:40px;">Eight years spent chasing light — as a photographer and a graphic designer — has taught me one thing: the best work never feels designed. It feels inevitable. Click a card to read more.</p>
+        <p class="section-tag reveal" style="max-width:100%;margin-bottom:40px;">Eight years spent chasing light — as a photographer and a digital artist — has taught me one thing: the best work never feels designed. It feels inevitable. Click a card to read more.</p>
 
         <div class="about-cards reveal">
           <div class="a-card" data-open="true">
@@ -594,9 +194,9 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
     <div class="section-head">
       <div>
         <div class="eyebrow reveal">Selected Work</div>
-        <h2 class="section-title reveal">Photography &amp;<br>Graphic Design.</h2>
+        <h2 class="section-title reveal">Photography &amp;<br>Digital Art.</h2>
       </div>
-      <p class="section-tag reveal">A collection of frames and layouts — filter by category, click to see the full story behind each piece.</p>
+      <p class="section-tag reveal">A collection of frames — filter by category, click to see the full story behind each piece.</p>
     </div>
     <div class="filter-bar reveal" id="filter-bar"></div>
     <div class="masonry" id="gallery"></div>
@@ -620,21 +220,31 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
   </div>
 </section>
 
-<!-- ===================== TESTIMONIALS ===================== -->
+<!-- ===================== CLIENT FEEDBACK ===================== -->
 <section id="testimonials">
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="eyebrow reveal">Kind Words</div>
-        <h2 class="section-title reveal">Trusted by people<br>who value craft.</h2>
+        <div class="eyebrow reveal">Real Words, From Real Clients</div>
+        <h2 class="section-title reveal">Client Feedback.</h2>
+      </div>
+      <div class="feedback-actions reveal">
+        <button class="btn btn-primary magnetic" id="open-feedback-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20l9-9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Leave Feedback
+        </button>
+        <a href="#" target="_blank" rel="noopener" class="btn btn-outline magnetic" id="google-review-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+          Write a Google Review
+        </a>
       </div>
     </div>
-    <div class="t-track-wrap reveal">
-      <div class="t-track" id="t-track"></div>
+
+    <div class="feedback-grid" id="feedback-grid">
+      <!-- feedback cards injected by script.js (Supabase, with in-memory fallback) -->
     </div>
-    <div class="t-controls">
-      <button class="t-arrow" id="t-prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <button class="t-arrow" id="t-next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="feedback-empty" id="feedback-empty">
+      <p>No feedback yet — be the first to share your experience.</p>
     </div>
   </div>
 </section>
@@ -646,7 +256,7 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
       <div>
         <div class="eyebrow reveal">Get In Touch</div>
         <h2 class="section-title reveal">Let's create<br>something timeless.</h2>
-        <p class="section-tag reveal" style="margin-top:20px;">Available for weddings, editorial shoots, brand identity and packaging work worldwide.</p>
+        <p class="section-tag reveal" style="margin-top:20px;">Available for weddings, editorial shoots, and digital art commissions worldwide.</p>
         <div class="contact-info-list reveal">
           <div class="ci-item"><div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><div class="ci-label">Phone</div><div class="ci-val">+1 (415) 555-0182</div></div></div>
           <div class="ci-item"><div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></div><div><div class="ci-label">Email</div><div class="ci-val">hello@abishek.studio</div></div></div>
@@ -662,21 +272,31 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
       <div class="contact-form reveal">
         <form id="contact-form">
           <div class="f-row">
-            <div class="f-group"><label>Name</label><input type="text" placeholder="Your name" required></div>
-            <div class="f-group"><label>Email</label><input type="email" placeholder="you@email.com" required></div>
+            <div class="f-group floating">
+              <input type="text" id="cf-name" placeholder=" " required>
+              <label for="cf-name">Name</label>
+            </div>
+            <div class="f-group floating">
+              <input type="email" id="cf-email" placeholder=" " required>
+              <label for="cf-email">Email</label>
+            </div>
           </div>
-          <div class="f-group"><label>Project Type</label>
-            <select><option>Wedding Photography</option><option>Editorial / Portrait</option><option>Graphic Design / Branding</option><option>Other</option></select>
+          <div class="f-group">
+            <label class="static-label">Project Type</label>
+            <select id="cf-type"><option>Wedding Photography</option><option>Editorial / Portrait</option><option>Digital Art / Commission</option><option>Other</option></select>
           </div>
-          <div class="f-group"><label>Message</label><textarea rows="4" placeholder="Tell me about your project..." required></textarea></div>
+          <div class="f-group floating">
+            <textarea id="cf-message" rows="4" placeholder=" " required></textarea>
+            <label for="cf-message">Message</label>
+          </div>
           <button type="submit" class="btn btn-primary send-btn magnetic">Send Message
             <svg class="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
           </button>
         </form>
         <div class="form-success" id="form-success">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-          <h3 style="font-size:20px;">Message sent</h3>
-          <p style="color:var(--text-light);font-size:14px;margin-top:8px;">Thanks for reaching out — Abishek typically replies within 24 hours.</p>
+          <h3>Message sent</h3>
+          <p>Thanks for reaching out — Abishek typically replies within 24 hours.</p>
         </div>
       </div>
     </div>
@@ -698,10 +318,12 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
   </div>
 </footer>
 
-<!-- ===================== MODAL ===================== -->
+<!-- ===================== IMAGE MODAL ===================== -->
 <div id="modal-backdrop">
   <div id="modal">
-    <button class="modal-close" id="modal-close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#101828" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="modal-close" id="modal-close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="modal-nav modal-prev" id="modal-prev" aria-label="Previous"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="modal-nav modal-next" id="modal-next" aria-label="Next"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
     <div class="modal-img"><img id="modal-img" src="" alt=""></div>
     <div class="modal-info">
       <div class="modal-cat" id="modal-cat"></div>
@@ -710,410 +332,66 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
       <div class="modal-story"><b>Story Behind The Photo</b><span id="modal-story"></span></div>
       <div class="modal-specs" id="modal-specs"></div>
       <div class="modal-tags" id="modal-tags"></div>
+      <div class="modal-related">
+        <b class="modal-related-label">Related Photos</b>
+        <div class="modal-related-row" id="modal-related-row"></div>
+      </div>
     </div>
   </div>
 </div>
 
-<script>
-gsap.registerPlugin(ScrollTrigger);
-
-/* ============ DATA ============ */
-const galleryData = [
-  {cat:'wedding',title:'Golden Hour Vows',loc:'Napa Valley, CA',date:'Jun 2024',desc:'An intimate vineyard ceremony captured as the light turned amber over the hills.',story:'The couple asked for one thing only: no posed shots during the vows. Every frame here was earned by staying invisible for forty minutes.',img:'photo-1519741497674-611481863552',h:520,camera:'Sony A7R V',lens:'85mm f/1.4 GM',iso:'200',aperture:'f/1.8',shutter:'1/400s',client:'Priya & Dev',tags:['wedding','golden hour','documentary']},
-  {cat:'nature',title:'Ridge Line',loc:'Dolomites, Italy',date:'Sep 2023',desc:'First light breaking over a jagged alpine ridge after a two-hour pre-dawn hike.',story:'Shot at -4°C with fogged-up lenses twice. The third attempt, the clouds finally parted for ninety seconds.',img:'photo-1470071459604-3b5ec3a7fe05',h:640,camera:'Nikon Z9',lens:'14-24mm f/2.8',iso:'100',aperture:'f/11',shutter:'1/60s',client:'Personal Work',tags:['landscape','mountains','sunrise']},
-  {cat:'street',title:'Rain on Fifth',loc:'New York, NY',date:'Nov 2023',desc:'A lone commuter cuts through the reflections of a rain-soaked avenue at dusk.',story:'No tripod, no plan — just forty-five minutes of walking until the reflections and the figure lined up.',img:'photo-1519608487953-e999c86e7455',h:480,camera:'Fujifilm X-T5',lens:'35mm f/1.4',iso:'1600',aperture:'f/2',shutter:'1/125s',client:'Personal Work',tags:['street','night','reflection']},
-  {cat:'food',title:'Char & Citrus',loc:'Studio, Los Angeles',date:'Feb 2024',desc:'Editorial food photography for a Mediterranean restaurant\'s spring menu launch.',story:'Three lighting setups tested before landing on a single hard side light to keep the char texture honest.',img:'photo-1476224203421-9ac39bcb3327',h:560,camera:'Canon R5',lens:'100mm f/2.8 Macro',iso:'100',aperture:'f/5.6',shutter:'1/160s',client:'Ember & Salt Kitchen',tags:['food','editorial','studio']},
-  {cat:'sports',title:'Match Point',loc:'Melbourne, Australia',date:'Jan 2024',desc:'Peak action from an ATP qualifier — freezing the exact moment of contact.',story:'Pre-focused on the baseline and burst-fired across eleven matches to land this single frame.',img:'photo-1461896836934-ffe607ba8211',h:500,camera:'Canon R3',lens:'400mm f/2.8',iso:'800',aperture:'f/4',shutter:'1/2000s',client:'Melbourne Open',tags:['sports','action','tennis']},
-  {cat:'events',title:'Festival Lights',loc:'Austin, TX',date:'Oct 2023',desc:'Crowd energy at golden hour during a three-day music festival main stage set.',story:'Climbed the sound tower for a clean angle above the crowd just as the haze caught the stage lights.',img:'photo-1492684223066-81342ee5ff30',h:600,camera:'Sony A7 IV',lens:'24-70mm f/2.8',iso:'400',aperture:'f/3.2',shutter:'1/500s',client:'Wildflower Festival',tags:['event','concert','crowd']},
-  {cat:'nature',title:'Silent Pines',loc:'Olympic NP, WA',date:'Aug 2023',desc:'Fog drifting through old-growth forest at first light.',story:'Returned to this trail four mornings in a row before the fog cooperated with the light.',img:'photo-1441974231531-c6227db76b6e',h:560,camera:'Nikon Z9',lens:'50mm f/1.8',iso:'320',aperture:'f/4',shutter:'1/40s',client:'Personal Work',tags:['forest','fog','nature']},
-  {cat:'wedding',title:'First Look',loc:'Lake Como, Italy',date:'May 2024',desc:'The quiet seconds before a first look, lakeside villa in the background.',story:'Positioned three steps back and let the moment happen unscripted — no direction given.',img:'photo-1511285560929-80b456fea0bc',h:480,camera:'Sony A7R V',lens:'50mm f/1.2',iso:'160',aperture:'f/1.6',shutter:'1/320s',client:'Elena & Marco',tags:['wedding','emotion','villa']},
-  {cat:'branding',title:'Nordr Identity System',loc:'Studio, Oslo',date:'Mar 2024',desc:'Full brand identity for a Scandinavian outdoor apparel label.',story:'Built the entire mark around a single ski-track line — every asset in the system traces back to it.',img:'photo-1523726491678-bf852e717f6a',h:520,camera:null,lens:null,iso:null,aperture:null,shutter:null,client:'Nordr Apparel',tags:['branding','logo','identity']},
-  {cat:'poster',title:'Monochrome Jazz',loc:'Studio, Chicago',date:'Apr 2024',desc:'Poster series for a five-night jazz residency downtown.',story:'Typography-led design using a single distressed serif to mirror the analog warmth of the music.',img:'photo-1493225457124-a3eb161ffa5f',h:600,camera:null,lens:null,iso:null,aperture:null,shutter:null,client:'Blue Room Jazz Club',tags:['poster','typography','print']},
-  {cat:'social media',title:'Bloom Skincare Campaign',loc:'Studio, Toronto',date:'Jul 2024',desc:'Social content system for a skincare brand\'s summer launch.',story:'Designed a modular grid so the in-house team could keep producing on-brand posts long after handoff.',img:'photo-1522337360788-8b13dee7a37e',h:460,camera:null,lens:null,iso:null,aperture:null,shutter:null,client:'Bloom Skincare',tags:['social','campaign','packaging']},
-  {cat:'street',title:'Crosswalk Silhouettes',loc:'Tokyo, Japan',date:'Dec 2023',desc:'Backlit figures crossing Shibuya at blue hour.',story:'Twelve minutes of blue hour, one crossing cycle, and a lot of luck with the timing.',img:'photo-1449824913935-59a10b8d2000',h:540,camera:'Fujifilm X-T5',lens:'23mm f/2',iso:'640',aperture:'f/4',shutter:'1/250s',client:'Personal Work',tags:['street','silhouette','tokyo']},
-];
-
-const categories = ['all','wedding','nature','street','food','sports','events','branding','poster','social media'];
-
-const projectsData = [
-  {title:'Bloom Skincare Rebrand',role:'Lead Designer',img:'photo-1522337360788-8b13dee7a37e',desc:'Full visual identity, packaging and campaign photography for a skincare relaunch across 40 retail doors.',software:'Illustrator, Photoshop, Figma',duration:'6 weeks',client:'Bloom Skincare'},
-  {title:'Nordr Apparel Launch',role:'Photographer & Designer',img:'photo-1441974231531-c6227db76b6e',desc:'Brand identity plus a full lookbook shot across three alpine locations in one week.',software:'Lightroom, Illustrator, InDesign',duration:'4 weeks',client:'Nordr Apparel'},
-  {title:'Wildflower Festival 2024',role:'Lead Photographer',img:'photo-1492684223066-81342ee5ff30',desc:'Three-day event coverage delivering same-day social content and a full recap gallery.',software:'Lightroom, Premiere Pro',duration:'3 days on-site',client:'Wildflower Festival'},
-];
-
-const testimonialsData = [
-  {name:'Priya Nair',role:'Bride, Napa Valley Wedding',quote:'Abishek disappeared into the day and somehow still caught every single moment that mattered. We didn\'t feel photographed — we felt witnessed.',img:'photo-1517841905240-472988babdf9',rating:5},
-  {name:'Marcus Reid',role:'Founder, Bloom Skincare',quote:'The rebrand didn\'t just look good — it sold better. Retail partners asked for the packaging by name. Rare to find someone this precise.',img:'photo-1500648767791-00dcc994a43e',rating:5},
-  {name:'Elena Rossi',role:'Bride, Lake Como Wedding',quote:'Quiet, unobtrusive, and somehow always in exactly the right place. The gallery still makes me cry, in the best way.',img:'photo-1519125323398-675f0ddb6308',rating:5},
-  {name:'Jordan Blake',role:'Director, Wildflower Festival',quote:'Same-day turnaround on festival content with zero drop in quality. Our socials have never performed better.',img:'photo-1506905925346-21bda4d32df4',rating:5},
-];
-
-const skillsData = [
-  {name:'Photography',pct:96,desc:'Weddings, editorial & landscape work.'},
-  {name:'Graphic Design',pct:92,desc:'Identity systems & print collateral.'},
-  {name:'Photoshop',pct:90,desc:'Retouching & composite imagery.'},
-  {name:'Illustrator',pct:85,desc:'Logos, icons & vector illustration.'},
-  {name:'Premiere Pro',pct:78,desc:'Wedding films & event recaps.'},
-  {name:'Figma',pct:40,desc:'Digital layouts & brand presentation.'},
-  ];
-
-const IMG = (id,w=800,q=80) => `https://images.unsplash.com/${id}?w=${w}&q=${q}&auto=format&fit=crop`;
-function withFallback(el, seed){ el.onerror = function(){ this.onerror=null; this.src = `https://picsum.photos/seed/${seed}/900/1100`; }; }
-
-/* ============ BUILD SKILLS ============ */
-const skillsGrid = document.getElementById('skills-grid');
-skillsData.forEach((s,i)=>{
-  const r = 42, c = 2*Math.PI*r;
-  const div = document.createElement('div');
-  div.className = 'skill-card reveal';
-  div.innerHTML = `
-    <div class="skill-ring">
-      <svg viewBox="0 0 104 104">
-        <circle class="bg-c" cx="52" cy="52" r="${r}"></circle>
-        <circle class="fg-c" cx="52" cy="52" r="${r}" stroke-dasharray="${c}" stroke-dashoffset="${c}" data-offset="${c - (s.pct/100)*c}"></circle>
-      </svg>
-      <div class="skill-pct">${s.pct}%</div>
+<!-- ===================== FEEDBACK MODAL ===================== -->
+<div id="fb-modal-backdrop">
+  <div id="fb-modal">
+    <button class="modal-close" id="fb-modal-close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="fb-modal-head">
+      <div class="eyebrow" style="margin-bottom:12px;">Client Feedback</div>
+      <h3>Share your experience</h3>
+      <p>Your feedback helps other clients trust the work — and helps me improve it.</p>
     </div>
-    <div class="skill-name">${s.name}</div>
-    <div class="skill-desc">${s.desc}</div>`;
-  skillsGrid.appendChild(div);
-});
-
-/* ============ BUILD FILTER BAR ============ */
-const filterBar = document.getElementById('filter-bar');
-categories.forEach((c,i)=>{
-  const b = document.createElement('button');
-  b.className = 'filter-btn' + (i===0?' active':'');
-  b.textContent = c.charAt(0).toUpperCase()+c.slice(1);
-  b.dataset.cat = c;
-  filterBar.appendChild(b);
-});
-
-/* ============ BUILD GALLERY ============ */
-const gallery = document.getElementById('gallery');
-let visibleCount = 8;
-
-function renderGallery(filter){
-  gallery.innerHTML = '';
-  const items = galleryData.filter(g => filter==='all' || g.cat===filter).slice(0, visibleCount);
-  items.forEach((g, idx)=>{
-    const card = document.createElement('div');
-    card.className = 'g-card reveal';
-    card.dataset.idx = galleryData.indexOf(g);
-    card.innerHTML = `
-      <div class="g-card-img">
-        <img src="${IMG(g.img,700)}" style="height:${g.h}px;object-fit:cover;" alt="${g.title}">
-        <div class="g-overlay">
-          <div class="g-cat">${g.cat}</div>
-          <div class="g-title">${g.title}</div>
-          <div class="g-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>${g.loc} · ${g.date}</div>
+    <form id="fb-form">
+      <div class="f-row">
+        <div class="f-group floating">
+          <input type="text" id="fb-name" placeholder=" " required>
+          <label for="fb-name">Full Name</label>
+        </div>
+        <div class="f-group floating">
+          <input type="tel" id="fb-phone" placeholder=" ">
+          <label for="fb-phone">Phone Number (optional)</label>
         </div>
       </div>
-      <div class="g-dots"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></div>
-      <div class="g-menu">
-        <button data-act="view"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>View Details</button>
-        <button data-act="share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>
-        <button data-act="download"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download</button>
-        <button data-act="favorite"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5 5 0 00-7.1 0L12 6.3l-1.7-1.7a5 5 0 00-7.1 7.1L12 21l8.8-9.3a5 5 0 000-7.1z"/></svg>Favorite</button>
-      </div>`;
-    const img = card.querySelector('img');
-    withFallback(img, 'gal-'+galleryData.indexOf(g));
-    gallery.appendChild(card);
-  });
-  document.getElementById('load-more-btn').style.display =
-    galleryData.filter(g=>filter==='all'||g.cat===filter).length > visibleCount ? 'inline-flex':'none';
-  refreshRevealTargets();
-}
-renderGallery('all');
+      <div class="f-group floating">
+        <input type="email" id="fb-email" placeholder=" ">
+        <label for="fb-email">Email (optional)</label>
+      </div>
+      <div class="f-group">
+        <label class="static-label">Rating</label>
+        <div class="star-input" id="fb-star-input">
+          <button type="button" class="star" data-val="1">★</button>
+          <button type="button" class="star" data-val="2">★</button>
+          <button type="button" class="star" data-val="3">★</button>
+          <button type="button" class="star" data-val="4">★</button>
+          <button type="button" class="star" data-val="5">★</button>
+        </div>
+        <input type="hidden" id="fb-rating" value="0">
+      </div>
+      <div class="f-group floating">
+        <textarea id="fb-message" rows="4" placeholder=" " required></textarea>
+        <label for="fb-message">Feedback Message</label>
+      </div>
+      <div class="fb-error" id="fb-error"></div>
+      <button type="submit" class="btn btn-primary send-btn magnetic" id="fb-submit-btn">Submit Feedback
+        <svg class="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </button>
+    </form>
+    <div class="form-success" id="fb-success">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+      <h3>Thank you!</h3>
+      <p>Your feedback has been submitted and now appears below.</p>
+    </div>
+  </div>
+</div>
 
-filterBar.addEventListener('click', e=>{
-  const btn = e.target.closest('.filter-btn'); if(!btn) return;
-  filterBar.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  visibleCount = 8;
-  renderGallery(btn.dataset.cat);
-});
-document.getElementById('load-more-btn').addEventListener('click', ()=>{
-  visibleCount += 8;
-  const active = filterBar.querySelector('.filter-btn.active').dataset.cat;
-  renderGallery(active);
-});
-
-/* gallery card interactions: dots menu + open modal */
-gallery.addEventListener('click', e=>{
-  const dots = e.target.closest('.g-dots');
-  const menuBtn = e.target.closest('.g-menu button');
-  const card = e.target.closest('.g-card');
-  if(dots){
-    e.stopPropagation();
-    const menu = card.querySelector('.g-menu');
-    document.querySelectorAll('.g-menu.open').forEach(m=>{ if(m!==menu) m.classList.remove('open'); });
-    menu.classList.toggle('open');
-    return;
-  }
-  if(menuBtn){
-    e.stopPropagation();
-    card.querySelector('.g-menu').classList.remove('open');
-    if(menuBtn.dataset.act==='view') openModal(parseInt(card.dataset.idx));
-    return;
-  }
-  if(card){ openModal(parseInt(card.dataset.idx)); }
-});
-document.addEventListener('click', e=>{
-  if(!e.target.closest('.g-menu') && !e.target.closest('.g-dots')){
-    document.querySelectorAll('.g-menu.open').forEach(m=>m.classList.remove('open'));
-  }
-});
-
-/* ============ MODAL ============ */
-const backdrop = document.getElementById('modal-backdrop');
-function openModal(i){
-  const g = galleryData[i];
-  document.getElementById('modal-img').src = IMG(g.img,1000);
-  withFallback(document.getElementById('modal-img'), 'modal-'+i);
-  document.getElementById('modal-cat').textContent = g.cat;
-  document.getElementById('modal-title').textContent = g.title;
-  document.getElementById('modal-desc').textContent = g.desc;
-  document.getElementById('modal-story').textContent = g.story;
-  const specs = document.getElementById('modal-specs');
-  const specList = [
-    ['Location', g.loc], ['Date', g.date], ['Client', g.client],
-    ...(g.camera ? [['Camera', g.camera],['Lens', g.lens],['ISO', g.iso],['Aperture', g.aperture],['Shutter Speed', g.shutter]] : [])
-  ];
-  specs.innerHTML = specList.map(([l,v])=>`<div class="spec-item"><div class="spec-label">${l}</div><div class="spec-val">${v}</div></div>`).join('');
-  document.getElementById('modal-tags').innerHTML = g.tags.map(t=>`<span class="tag">#${t}</span>`).join('');
-  backdrop.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeModal(){ backdrop.classList.remove('open'); document.body.style.overflow=''; }
-document.getElementById('modal-close').addEventListener('click', closeModal);
-backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeModal(); });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
-
-/* ============ PROJECTS ============ */
-const projGrid = document.getElementById('projects-grid');
-projectsData.forEach((p,i)=>{
-  const div = document.createElement('div');
-  div.className = 'p-card reveal';
-  div.innerHTML = `
-    <div class="p-cover"><img src="${IMG(p.img,700)}" alt="${p.title}"></div>
-    <div class="p-body">
-      <div class="p-role">${p.role}</div>
-      <h3 class="p-title">${p.title}</h3>
-      <p class="p-desc">${p.desc}</p>
-      <div class="p-meta"><span>${p.software}</span><span>${p.duration}</span></div>
-      <a href="#" class="p-link">View Case Study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
-    </div>`;
-  withFallback(div.querySelector('img'), 'proj-'+i);
-  projGrid.appendChild(div);
-});
-
-/* ============ TESTIMONIALS ============ */
-const tTrack = document.getElementById('t-track');
-testimonialsData.forEach((t,i)=>{
-  const stars = Array.from({length:t.rating}).map(()=>`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>`).join('');
-  const div = document.createElement('div');
-  div.className = 't-card';
-  div.innerHTML = `
-    <div class="t-stars">${stars}</div>
-    <p class="t-quote">"${t.quote}"</p>
-    <div class="t-person">
-      <div class="t-avatar"><img src="${IMG(t.img,120)}" alt="${t.name}"></div>
-      <div><div class="t-name">${t.name}</div><div class="t-role">${t.role}</div></div>
-    </div>`;
-  withFallback(div.querySelector('img'), 'test-'+i);
-  tTrack.appendChild(div);
-});
-let tIndex = 0;
-function tUpdate(){
-  const cardWidth = tTrack.children[0].getBoundingClientRect().width + 24;
-  const perView = window.innerWidth<=640?1:(window.innerWidth<=980?2:3);
-  const maxIndex = Math.max(0, testimonialsData.length - perView);
-  tIndex = Math.max(0, Math.min(tIndex, maxIndex));
-  tTrack.style.transform = `translateX(-${tIndex*cardWidth}px)`;
-}
-document.getElementById('t-next').addEventListener('click', ()=>{ tIndex++; tUpdate(); });
-document.getElementById('t-prev').addEventListener('click', ()=>{ tIndex--; tUpdate(); });
-window.addEventListener('resize', tUpdate);
-
-/* ============ CONTACT FORM ============ */
-document.getElementById('contact-form').addEventListener('submit', function(e){
-  e.preventDefault();
-  this.style.display = 'none';
-  document.getElementById('form-success').classList.add('show');
-});
-
-/* ============ LOADER + INIT ============ */
-window.addEventListener('load', ()=>{
-  const pctEl = document.getElementById('loader-pct');
-  let p = 0;
-  const t = setInterval(()=>{
-    p += Math.random()*18;
-    if(p>=100){ p=100; clearInterval(t); }
-    pctEl.textContent = Math.floor(p)+'%';
-  }, 90);
-
-  const tl = gsap.timeline({ delay: 0.9, onComplete: initPage });
-  tl.to('.shutter-blade', { scale: 0, transformOrigin:'75px 75px', duration:.9, ease:'power3.inOut', stagger:.03 })
-    .to('#loader', { opacity:0, duration:.6, ease:'power2.inOut', pointerEvents:'none' }, '-=.3')
-    .set('#loader', { display:'none' });
-});
-
-function initPage(){
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  /* Lenis smooth scroll */
-  const lenis = new Lenis({ duration:1.1, easing:(t)=>Math.min(1,1.001-Math.pow(2,-10*t)) });
-  function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
-  requestAnimationFrame(raf);
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time)=>{ lenis.raf(time*1000); });
-  gsap.ticker.lagSmoothing(0);
-
-  /* hero entrance */
-  gsap.to('.hero-title .line span', { yPercent:-110, duration:1, ease:'power4.out', delay:.1 });
-  gsap.from('.hero-eyebrow, .hero-role, .hero-desc, .hero-btns', { y:24, opacity:0, duration:.9, stagger:.08, ease:'power3.out', delay:.35 });
-  gsap.from('#hero-visual', { scale:.88, opacity:0, duration:1.2, ease:'power3.out', delay:.3 });
-  gsap.from('.float-icon', { scale:0, opacity:0, duration:.7, stagger:.12, ease:'back.out(2)', delay:1 });
-
-  /* skill rings animate in */
-  document.querySelectorAll('.skill-ring .fg-c').forEach(c=>{
-    gsap.to(c, { strokeDashoffset: c.dataset.offset, duration:1.6, ease:'power3.out',
-      scrollTrigger:{ trigger:c, start:'top 85%' } });
-  });
-  /* badge ring */
-  gsap.set('.badge-ring .fg-c', {opacity:1});
-
-  /* generic reveal */
-  refreshRevealTargets();
-
-  tUpdate();
-  ScrollTrigger.refresh();
-}
-
-function refreshRevealTargets(){
-  document.querySelectorAll('.reveal').forEach(el=>{
-    if(el.dataset.revealed) return;
-    gsap.set(el,{opacity:0,y:36});
-    ScrollTrigger.create({
-      trigger:el, start:'top 90%',
-      onEnter:()=>{ gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out'}); el.dataset.revealed='1'; }
-    });
-  });
-}
-
-/* ============ NAV ============ */
-const header = document.getElementById('site-header');
-window.addEventListener('scroll', ()=>{ header.classList.toggle('scrolled', window.scrollY>40); });
-
-const sections = ['hero','about','skills','portfolio','projects','testimonials','contact'];
-const navLinks = document.querySelectorAll('.nav-link');
-window.addEventListener('scroll', ()=>{
-  let current = 'hero';
-  sections.forEach(id=>{
-    const el = document.getElementById(id);
-    if(el && window.scrollY >= el.offsetTop - window.innerHeight*0.4) current = id;
-  });
-  navLinks.forEach(l=> l.classList.toggle('active', l.dataset.target===current));
-});
-
-/* mobile menu */
-const burger = document.getElementById('burger-btn');
-const mmenu = document.getElementById('mobile-menu');
-burger.addEventListener('click', ()=> mmenu.classList.add('open'));
-document.getElementById('mm-close').addEventListener('click', ()=> mmenu.classList.remove('open'));
-mmenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mmenu.classList.remove('open')));
-
-/* about cards accordion */
-document.querySelectorAll('.a-card').forEach(card=>{
-  const body = card.querySelector('.a-body');
-  if(card.dataset.open==='true'){ card.classList.add('open'); body.style.maxHeight = body.scrollHeight+40+'px'; }
-  card.addEventListener('click', ()=>{
-    const isOpen = card.classList.contains('open');
-    document.querySelectorAll('.a-card').forEach(c=>{
-      c.classList.remove('open'); c.querySelector('.a-body').style.maxHeight = 0;
-    });
-    if(!isOpen){ card.classList.add('open'); body.style.maxHeight = body.scrollHeight+40+'px'; }
-  });
-});
-
-/* counters */
-document.querySelectorAll('.counter-num').forEach(el=>{
-  const target = +el.dataset.count;
-  const numEl = el.querySelector('.n');
-  ScrollTrigger.create({
-    trigger:el, start:'top 90%', once:true,
-    onEnter:()=>{ gsap.to({v:0},{ v:target, duration:1.8, ease:'power2.out',
-      onUpdate:function(){ numEl.textContent = Math.floor(this.targets()[0].v); } }); }
-  });
-});
-
-/* ============ CURSOR ============ */
-const cDot = document.getElementById('cursor-dot');
-const cRing = document.getElementById('cursor-ring');
-let mx=0,my=0, rx=0, ry=0;
-window.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; cDot.style.left=mx+'px'; cDot.style.top=my+'px'; });
-gsap.ticker.add(()=>{ rx += (mx-rx)*0.16; ry += (my-ry)*0.16; cRing.style.left=rx+'px'; cRing.style.top=ry+'px'; });
-document.querySelectorAll('a, button, .g-card, .magnetic, input, textarea, select').forEach(el=>{
-  el.addEventListener('mouseenter', ()=> cRing.classList.add('big'));
-  el.addEventListener('mouseleave', ()=> cRing.classList.remove('big'));
-});
-document.querySelectorAll('.g-card').forEach(el=>{
-  el.addEventListener('mouseenter', ()=> cRing.classList.add('view'));
-  el.addEventListener('mouseleave', ()=> cRing.classList.remove('view'));
-});
-
-/* re-bind on gallery re-render */
-const galleryObserver = new MutationObserver(()=>{
-  gallery.querySelectorAll('.g-card').forEach(el=>{
-    el.addEventListener('mouseenter', ()=>{ cRing.classList.add('big'); cRing.classList.add('view'); });
-    el.addEventListener('mouseleave', ()=>{ cRing.classList.remove('big'); cRing.classList.remove('view'); });
-  });
-});
-galleryObserver.observe(gallery, {childList:true});
-
-/* ============ MAGNETIC BUTTONS ============ */
-function bindMagnetic(){
-  document.querySelectorAll('.magnetic').forEach(btn=>{
-    if(btn.dataset.magBound) return;
-    btn.dataset.magBound='1';
-    btn.addEventListener('mousemove', e=>{
-      const r = btn.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width/2;
-      const y = e.clientY - r.top - r.height/2;
-      gsap.to(btn, { x:x*0.35, y:y*0.35, duration:.4, ease:'power3.out' });
-    });
-    btn.addEventListener('mouseleave', ()=>{ gsap.to(btn,{x:0,y:0,duration:.5,ease:'elastic.out(1,0.4)'}); });
-  });
-}
-bindMagnetic();
-new MutationObserver(bindMagnetic).observe(document.body,{childList:true,subtree:true});
-
-/* ============ HERO PARALLAX ON MOUSE ============ */
-const heroVisual = document.getElementById('hero-visual');
-const heroPortrait = document.getElementById('hero-portrait');
-window.addEventListener('mousemove', e=>{
-  if(window.innerWidth<=980) return;
-  const x = (e.clientX/window.innerWidth - .5)*24;
-  const y = (e.clientY/window.innerHeight - .5)*24;
-  gsap.to(heroPortrait, { x:x, y:y, duration:.8, ease:'power2.out' });
-});
-
-/* ============ FLOATING PARTICLES ============ */
-(function initParticles(){
-  const visual = document.getElementById('hero-visual');
-  for(let i=0;i<14;i++){
-    const p = document.createElement('div');
-    p.className='hero-particle';
-    const size = Math.random()*5+2;
-    p.style.width=size+'px'; p.style.height=size+'px';
-    p.style.left = Math.random()*100+'%';
-    p.style.top = Math.random()*100+'%';
-    visual.appendChild(p);
-    gsap.to(p, { y: (Math.random()*80-40), x:(Math.random()*80-40), opacity: Math.random()*.5+.2,
-      duration: Math.random()*4+3, repeat:-1, yoyo:true, ease:'sine.inOut', delay: Math.random()*2 });
-  }
-})();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
