@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -30,7 +30,7 @@
   --shadow-lg: 0 24px 70px rgba(16,24,40,.14);
   --ease: cubic-bezier(.16,.84,.44,1);
   --f-head:'Clash Display', 'Inter', sans-serif;
-  --f-body:'Inter', sans-serif;
+  --f-body:'Montserrat', sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{background:var(--bg);}
@@ -490,7 +490,7 @@ footer{background:var(--text);color:#fff;padding:80px 0 30px;}
   </svg>
   <div class="wrap hero-grid">
     <div>
-      <div class="hero-eyebrow">Photography &amp; Visual Design Studio</div>
+      <div class="hero-eyebrow">Photography &amp;  Digital Arts</div>
       <h1 class="hero-title">
         <span class="line"><span>ABISHEK</span></span>
       </h1>
@@ -751,13 +751,11 @@ const testimonialsData = [
 const skillsData = [
   {name:'Photography',pct:96,desc:'Weddings, editorial & landscape work.'},
   {name:'Graphic Design',pct:92,desc:'Identity systems & print collateral.'},
-  {name:'Lightroom',pct:95,desc:'Color grading & film-inspired tones.'},
   {name:'Photoshop',pct:90,desc:'Retouching & composite imagery.'},
   {name:'Illustrator',pct:85,desc:'Logos, icons & vector illustration.'},
   {name:'Premiere Pro',pct:78,desc:'Wedding films & event recaps.'},
-  {name:'Figma',pct:80,desc:'Digital layouts & brand presentation.'},
-  {name:'After Effects',pct:70,desc:'Motion titles & social reels.'},
-];
+  {name:'Figma',pct:40,desc:'Digital layouts & brand presentation.'},
+  ];
 
 const IMG = (id,w=800,q=80) => `https://images.unsplash.com/${id}?w=${w}&q=${q}&auto=format&fit=crop`;
 function withFallback(el, seed){ el.onerror = function(){ this.onerror=null; this.src = `https://picsum.photos/seed/${seed}/900/1100`; }; }
