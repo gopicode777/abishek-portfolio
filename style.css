@@ -123,7 +123,7 @@ header.scrolled .nav-inner{
 .hero-eyebrow{margin-bottom:26px;font-family:var(--f-body);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;}
 .hero-title{font-size:clamp(46px,7vw,92px);}
 .hero-title .line{display:block;overflow:hidden;line-height:1.12;padding-bottom:.1em;margin-bottom:-.1em;}
-.hero-title .line span{display:inline-block;transform:translateY(110%);will-change:transform;}
+.hero-title .line span{display:inline-block;transform:translateY(0);will-change:transform;}
 .hero-role{font-family:var(--f-head);font-size:clamp(20px,2.4vw,28px);color:var(--accent);margin-top:10px;font-weight:500;}
 .hero-desc{max-width:460px;color:var(--text-light);font-size:17px;line-height:1.75;margin-top:26px;font-weight:300;}
 .hero-btns{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
