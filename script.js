@@ -453,14 +453,14 @@ function initPage(){
 function playHeroEntrance(){
   const spans = document.querySelectorAll('.hero-title .line span');
   gsap.killTweensOf(spans);
-  gsap.set(spans, { yPercent:110 }); // guaranteed correct starting point every run
+  gsap.set(spans, { yPercent:110 });
 
   gsap.to(spans, {
     yPercent: 0,
     duration: 1,
     ease: 'power4.out',
-    delay: .1,
-    clearProps: 'transform' // prevents any leftover transform from re-clipping later
+    delay: .1
+    // clearProps removed — it was reverting to the CSS translateY(110%) after finishing
   });
 
   gsap.fromTo('.hero-eyebrow, .hero-role, .hero-desc, .hero-btns',
