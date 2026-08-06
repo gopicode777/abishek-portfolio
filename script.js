@@ -39,19 +39,27 @@ document.getElementById('google-review-btn').href = GOOGLE_REVIEW_URL;
 
 /* ============ DATA ============ */
 const galleryData = [
-  {cat:'wedding',title:'Golden Hour Vows',loc:'Napa Valley, CA',date:'Jun 2024',desc:'An intimate vineyard ceremony captured as the light turned amber over the hills.',story:'The couple asked for one thing only: no posed shots during the vows. Every frame here was earned by staying invisible for forty minutes.',img:'photo-1519741497674-611481863552',h:520,camera:'Sony A7R V',lens:'85mm f/1.4 GM',iso:'200',aperture:'f/1.8',shutter:'1/400s',client:'Priya & Dev',tags:['wedding','golden hour','documentary']},
-  {cat:'nature',title:'Ridge Line',loc:'Dolomites, Italy',date:'Sep 2023',desc:'First light breaking over a jagged alpine ridge after a two-hour pre-dawn hike.',story:'Shot at -4°C with fogged-up lenses twice. The third attempt, the clouds finally parted for ninety seconds.',img:'photo-1470071459604-3b5ec3a7fe05',h:640,camera:'Nikon Z9',lens:'14-24mm f/2.8',iso:'100',aperture:'f/11',shutter:'1/60s',client:'Personal Work',tags:['landscape','mountains','sunrise']},
-  {cat:'street',title:'Rain on Fifth',loc:'New York, NY',date:'Nov 2023',desc:'A lone commuter cuts through the reflections of a rain-soaked avenue at dusk.',story:'No tripod, no plan — just forty-five minutes of walking until the reflections and the figure lined up.',img:'photo-1519608487953-e999c86e7455',h:480,camera:'Fujifilm X-T5',lens:'35mm f/1.4',iso:'1600',aperture:'f/2',shutter:'1/125s',client:'Personal Work',tags:['street','night','reflection']},
-  {cat:'food',title:'Char & Citrus',loc:'Studio, Los Angeles',date:'Feb 2024',desc:'Editorial food photography for a Mediterranean restaurant\'s spring menu launch.',story:'Three lighting setups tested before landing on a single hard side light to keep the char texture honest.',img:'photo-1476224203421-9ac39bcb3327',h:560,camera:'Canon R5',lens:'100mm f/2.8 Macro',iso:'100',aperture:'f/5.6',shutter:'1/160s',client:'Ember & Salt Kitchen',tags:['food','editorial','studio']},
-  {cat:'sports',title:'Match Point',loc:'Melbourne, Australia',date:'Jan 2024',desc:'Peak action from an ATP qualifier — freezing the exact moment of contact.',story:'Pre-focused on the baseline and burst-fired across eleven matches to land this single frame.',img:'photo-1461896836934-ffe607ba8211',h:500,camera:'Canon R3',lens:'400mm f/2.8',iso:'800',aperture:'f/4',shutter:'1/2000s',client:'Melbourne Open',tags:['sports','action','tennis']},
-  {cat:'events',title:'Festival Lights',loc:'Austin, TX',date:'Oct 2023',desc:'Crowd energy at golden hour during a three-day music festival main stage set.',story:'Climbed the sound tower for a clean angle above the crowd just as the haze caught the stage lights.',img:'photo-1492684223066-81342ee5ff30',h:600,camera:'Sony A7 IV',lens:'24-70mm f/2.8',iso:'400',aperture:'f/3.2',shutter:'1/500s',client:'Wildflower Festival',tags:['event','concert','crowd']},
-  {cat:'nature',title:'Silent Pines',loc:'Olympic NP, WA',date:'Aug 2023',desc:'Fog drifting through old-growth forest at first light.',story:'Returned to this trail four mornings in a row before the fog cooperated with the light.',img:'photo-1441974231531-c6227db76b6e',h:560,camera:'Nikon Z9',lens:'50mm f/1.8',iso:'320',aperture:'f/4',shutter:'1/40s',client:'Personal Work',tags:['forest','fog','nature']},
-  {cat:'wedding',title:'First Look',loc:'Lake Como, Italy',date:'May 2024',desc:'The quiet seconds before a first look, lakeside villa in the background.',story:'Positioned three steps back and let the moment happen unscripted — no direction given.',img:'photo-1511285560929-80b456fea0bc',h:480,camera:'Sony A7R V',lens:'50mm f/1.2',iso:'160',aperture:'f/1.6',shutter:'1/320s',client:'Elena & Marco',tags:['wedding','emotion','villa']},
-  {cat:'street',title:'Crosswalk Silhouettes',loc:'Tokyo, Japan',date:'Dec 2023',desc:'Backlit figures crossing Shibuya at blue hour.',story:'Twelve minutes of blue hour, one crossing cycle, and a lot of luck with the timing.',img:'photo-1449824913935-59a10b8d2000',h:540,camera:'Fujifilm X-T5',lens:'23mm f/2',iso:'640',aperture:'f/4',shutter:'1/250s',client:'Personal Work',tags:['street','silhouette','tokyo']},
+  {cat:'street',title:'City Skyline Silhouette',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-1.jpeg',h:520},
+  {cat:'street',title:'Evening Commute',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-2.jpeg',h:480},
+  {cat:'street',title:'Rain Reflections',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-3.jpeg',h:560},
+  {cat:'street',title:'Golden Hour Walk',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-4.jpeg',h:500},
+  {cat:'street',title:'Market Crowd',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-5.jpeg',h:540},
+  {cat:'street',title:'Quiet Alley',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-6.jpeg',h:480},
+  {cat:'street',title:'Street Vendor',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-7.jpeg',h:600},
+  {cat:'street',title:'Passing Shadows',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-8.jpeg',h:510},
+  {cat:'street',title:'Morning Rush',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-9.jpeg',h:470},
+  {cat:'street',title:'Neon Signs at Night',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-10.jpeg',h:590},
+  {cat:'street',title:'Candid Conversation',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-11.jpeg',h:530},
+  {cat:'street',title:'Between Buildings',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-12.jpeg',h:500},
+  {cat:'street',title:'Light and Shadow Play',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-13.jpeg',h:560},
+  {cat:'street',title:'Crosswalk Moment',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-14.jpeg',h:480},
+  {cat:'street',title:'Local Life',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-15.jpeg',h:540},
+  {cat:'street',title:'Framed by Windows',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-16.jpeg',h:510},
+  {cat:'street',title:'Everyday Motion',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-17.jpeg',h:560},
+  {cat:'street',title:'Street Corner Story',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-18.jpeg',h:490},
+  {cat:'street',title:'Fading Light',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-19.jpeg',h:550},
 ];
-const categories = ['all','wedding','nature','street','food','sports','events'];
-
-const projectsData = [
+const categories = ['all','street'];const projectsData = [
   {title:'Nordr Apparel Lookbook',role:'Lead Photographer',img:'photo-1441974231531-c6227db76b6e',desc:'Full lookbook shot across three alpine locations in one week for an outdoor apparel launch.',software:'Lightroom, Capture One',duration:'4 weeks',client:'Nordr Apparel'},
   {title:'Wildflower Festival 2024',role:'Lead Photographer',img:'photo-1492684223066-81342ee5ff30',desc:'Three-day event coverage delivering same-day social content and a full recap gallery.',software:'Lightroom, Premiere Pro',duration:'3 days on-site',client:'Wildflower Festival'},
   {title:'Ember & Salt Menu Launch',role:'Photographer',img:'photo-1476224203421-9ac39bcb3327',desc:'Editorial food photography for a full spring menu across print and digital.',software:'Capture One, Photoshop',duration:'2 weeks',client:'Ember & Salt Kitchen'},
@@ -68,7 +76,7 @@ const skillsData = [
   {name:'After Effects',pct:70,desc:'Motion titles & social reels.'},
 ];
 
-const IMG = (id,w=800,q=80) => `https://images.unsplash.com/${id}?w=${w}&q=${q}&auto=format&fit=crop`;
+const IMG = (id,w=800,q=80) => id.startsWith('images/') ? id : `https://images.unsplash.com/${id}?w=${w}&q=${q}&auto=format&fit=crop`;
 function withFallback(el, seed){ el.onerror = function(){ this.onerror=null; this.src = `https://picsum.photos/seed/${seed}/900/1100`; }; }
 
 /* ============ SKILLS ============ */
