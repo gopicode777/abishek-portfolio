@@ -58,8 +58,20 @@ const galleryData = [
   {cat:'street',title:'Everyday Motion',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-17.jpeg',h:560},
   {cat:'street',title:'Street Corner Story',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-18.jpeg',h:490},
   {cat:'street',title:'Fading Light',loc:'Pappakovil',date:'2024',desc:'Candid street photography frame.',story:'',img:'images/gallery/street-19.jpeg',h:550},
+  {cat:'covers',title:'English Subject Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-1.jpeg',h:540},
+  {cat:'covers',title:'Computer Science Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-2.jpeg',h:540},
+  {cat:'covers',title:'Hindi Subject Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-3.jpeg',h:540},
+  {cat:'covers',title:'Jotter Notes Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-4.jpeg',h:540},
+  {cat:'covers',title:'Mathematics Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-5.jpeg',h:560},
+  {cat:'covers',title:'Science Subject Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-6.jpeg',h:520},
+  {cat:'covers',title:'Tamil Subject Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-7.jpeg',h:540},
+  {cat:'covers',title:'Social Science Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-8.jpeg',h:560},
+  {cat:'covers',title:'General Notes Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-9.jpeg',h:500},
+  {cat:'covers',title:'Art & Craft Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-10.jpeg',h:540},
+  {cat:'covers',title:'Practical Notebook Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-11.jpeg',h:560},
+  {cat:'covers',title:'Homework Diary Cover',loc:'Studio',date:'2024',desc:'Notebook cover design for school subject branding.',story:'',img:'images/covers/covers-12.jpeg',h:520},
 ];
-const categories = ['all','street'];const projectsData = [
+const categories = ['all','street','covers'];const projectsData = [
   {title:'Nordr Apparel Lookbook',role:'Lead Photographer',img:'photo-1441974231531-c6227db76b6e',desc:'Full lookbook shot across three alpine locations in one week for an outdoor apparel launch.',software:'Lightroom, Capture One',duration:'4 weeks',client:'Nordr Apparel'},
   {title:'Wildflower Festival 2024',role:'Lead Photographer',img:'photo-1492684223066-81342ee5ff30',desc:'Three-day event coverage delivering same-day social content and a full recap gallery.',software:'Lightroom, Premiere Pro',duration:'3 days on-site',client:'Wildflower Festival'},
   {title:'Ember & Salt Menu Launch',role:'Photographer',img:'photo-1476224203421-9ac39bcb3327',desc:'Editorial food photography for a full spring menu across print and digital.',software:'Capture One, Photoshop',duration:'2 weeks',client:'Ember & Salt Kitchen'},
@@ -217,11 +229,11 @@ function openModal(i){
   document.getElementById('modal-story').textContent = g.story;
   const specs = document.getElementById('modal-specs');
   const specList = [
-    ['Location', g.loc], ['Date', g.date], ['Client', g.client],
+    ['Location', g.loc], ['Date', g.date], ...(g.client ? [['Client', g.client]] : []),
     ...(g.camera ? [['Camera', g.camera],['Lens', g.lens],['ISO', g.iso],['Aperture', g.aperture],['Shutter Speed', g.shutter]] : [])
   ];
   specs.innerHTML = specList.map(([l,v])=>`<div class="spec-item"><div class="spec-label">${l}</div><div class="spec-val">${v}</div></div>`).join('');
-  document.getElementById('modal-tags').innerHTML = g.tags.map(t=>`<span class="tag">#${t}</span>`).join('');
+  document.getElementById('modal-tags').innerHTML = (g.tags||[]).map(t=>`<span class="tag">#${t}</span>`).join('');
 
   const related = currentFilteredList.filter((x)=> x.cat===g.cat && x!==g).slice(0,6);
   const row = document.getElementById('modal-related-row');
