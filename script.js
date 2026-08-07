@@ -111,8 +111,13 @@ const galleryData = [
   {cat:'posters',title:'Admission Poster 39',loc:'Studio',date:'2025',desc:'Admissions poster design for college/course promotion.',story:'',img:'images/posters/poster-39.jpeg',h:480},
   {cat:'posters',title:'Admission Poster 40',loc:'Studio',date:'2025',desc:'Admissions poster design for college/course promotion.',story:'',img:'images/posters/poster-40.jpeg',h:550},
   {cat:'posters',title:'Admission Poster 41',loc:'Studio',date:'2025',desc:'Admissions poster design for college/course promotion.',story:'',img:'images/posters/poster-41.jpeg',h:510},
+  {cat:'picsarts',title:'Digital Art 1',loc:'Studio',date:'2025',desc:'Digital art and photo manipulation piece.',story:'',img:'images/picsarts/picsart-1.jpeg',h:540},
+  {cat:'picsarts',title:'Digital Art 2',loc:'Studio',date:'2025',desc:'Digital art and photo manipulation piece.',story:'',img:'images/picsarts/picsart-2.jpeg',h:560},
+  {cat:'picsarts',title:'Digital Art 3',loc:'Studio',date:'2025',desc:'Digital art and photo manipulation piece.',story:'',img:'images/picsarts/picsart-3.jpeg',h:500},
+  {cat:'picsarts',title:'Digital Art 4',loc:'Studio',date:'2025',desc:'Digital art and photo manipulation piece.',story:'',img:'images/picsarts/picsart-4.jpeg',h:530},
+  {cat:'picsarts',title:'Digital Art 5',loc:'Studio',date:'2025',desc:'Digital art and photo manipulation piece.',story:'',img:'images/picsarts/picsart-5.jpeg',h:550},
 ];
-const categories = ['all','street','covers','posters'];const projectsData = [
+const categories = ['all','street','covers','picsarts','posters'];const projectsData = [
   {title:'Nordr Apparel Lookbook',role:'Lead Photographer',img:'photo-1441974231531-c6227db76b6e',desc:'Full lookbook shot across three alpine locations in one week for an outdoor apparel launch.',software:'Lightroom, Capture One',duration:'4 weeks',client:'Nordr Apparel'},
   {title:'Wildflower Festival 2024',role:'Lead Photographer',img:'photo-1492684223066-81342ee5ff30',desc:'Three-day event coverage delivering same-day social content and a full recap gallery.',software:'Lightroom, Premiere Pro',duration:'3 days on-site',client:'Wildflower Festival'},
   {title:'Ember & Salt Menu Launch',role:'Photographer',img:'photo-1476224203421-9ac39bcb3327',desc:'Editorial food photography for a full spring menu across print and digital.',software:'Capture One, Photoshop',duration:'2 weeks',client:'Ember & Salt Kitchen'},
@@ -169,7 +174,9 @@ let currentModalIndex = -1; // index within currentFilteredList
 
 function renderGallery(filter){
   gallery.innerHTML = '';
-  currentFilteredList = galleryData.filter(g => filter==='all' || g.cat===filter);
+  currentFilteredList = filter==='all'
+  ? categories.filter(c=>c!=='all').map(c=> galleryData.find(g=>g.cat===c)).filter(Boolean)
+  : galleryData.filter(g => g.cat===filter);
   const items = currentFilteredList.slice(0, visibleCount);
   items.forEach((g)=>{
     const card = document.createElement('div');
