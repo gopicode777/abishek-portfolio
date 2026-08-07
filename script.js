@@ -126,12 +126,12 @@ const categories = ['all','street','covers','picsarts','posters'];const projects
 const skillsData = [
   {name:'Photography',pct:96,desc:'Weddings, editorial & landscape work.'},
   {name:'Digital Art',pct:88,desc:'Composite imagery & retouching.'},
-  {name:'Lightroom',pct:95,desc:'Color grading & film-inspired tones.'},
   {name:'Photoshop',pct:90,desc:'Retouching & composite imagery.'},
   {name:'Illustrator',pct:82,desc:'Vector illustration & prints.'},
   {name:'Premiere Pro',pct:78,desc:'Wedding films & event recaps.'},
-  {name:'Capture One',pct:80,desc:'Tethered studio color workflow.'},
-  {name:'After Effects',pct:70,desc:'Motion titles & social reels.'},
+  {name:'Cover page',pct:99,desc:'modurn pages & coverse'},
+  {name:'street-Photography',pct:90,desc:'street photographpy & preserving emotions'},
+   {name:'posters design',pct:95,desc:'modurn pages & coverse'},
 ];
 
 const IMG = (id,w=800,q=80) => id.startsWith('images/') ? id : `https://images.unsplash.com/${id}?w=${w}&q=${q}&auto=format&fit=crop`;
