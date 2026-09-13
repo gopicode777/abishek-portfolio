@@ -1,0 +1,242 @@
+/* =========================================================
+   ORANGE THEME — MOTION & POLISH LAYER
+   Load this AFTER style.css / black-gold-theme.css.
+   Adds the "in & out" hover motion, glow and gradient touches
+   used across the reference design (buttons, cards, nav, images).
+   ========================================================= */
+
+:root{
+  --brand-1:#FF7A1A;
+  --brand-2:#FFB347;
+  --brand-glow:rgba(255,122,26,.35);
+}
+
+/* ---------- Buttons: gradient + press/lift feel ---------- */
+.btn-primary,
+.nav-cta,
+.login-btn,
+.save-btn,
+.publish-btn{
+  background:linear-gradient(135deg,var(--brand-1),var(--brand-2)) !important;
+  border:none !important;
+  color:#0b0b0b !important;
+  transition:transform .35s cubic-bezier(.16,.84,.44,1),
+             box-shadow .35s cubic-bezier(.16,.84,.44,1),
+             filter .35s ease !important;
+}
+.btn-primary:hover,
+.nav-cta:hover,
+.login-btn:hover,
+.save-btn:hover,
+.publish-btn:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 18px 40px var(--brand-glow) !important;
+  filter:brightness(1.06);
+}
+.btn-primary:active,
+.nav-cta:active,
+.login-btn:active,
+.save-btn:active,
+.publish-btn:active{
+  transform:translateY(0) scale(.96);
+  box-shadow:0 6px 16px var(--brand-glow) !important;
+}
+
+.btn-outline{
+  transition:transform .35s cubic-bezier(.16,.84,.44,1),
+             box-shadow .35s cubic-bezier(.16,.84,.44,1),
+             background .3s ease,color .3s ease !important;
+}
+.btn-outline:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 14px 34px var(--brand-glow);
+}
+.btn-outline:active{ transform:translateY(0) scale(.96); }
+
+/* ---------- Nav links: underline grows in / out ---------- */
+.nav-link{ position:relative; }
+.nav-link::after{
+  content:'';
+  position:absolute; left:50%; bottom:-6px;
+  width:0; height:2px;
+  background:linear-gradient(90deg,var(--brand-1),var(--brand-2));
+  transition:width .35s cubic-bezier(.16,.84,.44,1), left .35s cubic-bezier(.16,.84,.44,1);
+  border-radius:2px;
+}
+.nav-link:hover::after,
+.nav-link.active::after{
+  width:100%; left:0;
+}
+
+/* ---------- Cards: lift + glow ring on hover ---------- */
+.a-card,
+.skill-card,
+.g-card,
+.p-card,
+.fb-card,
+.stat-card{
+  transition:transform .45s cubic-bezier(.16,.84,.44,1),
+             box-shadow .45s cubic-bezier(.16,.84,.44,1),
+             border-color .35s ease !important;
+}
+.a-card:hover,
+.skill-card:hover,
+.p-card:hover,
+.stat-card:hover{
+  border-color:rgba(255,122,26,.45) !important;
+  box-shadow:0 22px 55px var(--brand-glow) !important;
+}
+.g-card:hover{
+  box-shadow:0 26px 60px var(--brand-glow) !important;
+  border-color:rgba(255,122,26,.4) !important;
+}
+
+/* ---------- Images inside cards: smooth in/out zoom ---------- */
+.g-card-img img,
+.p-cover img,
+.about-portrait-img img{
+  transition:transform .7s cubic-bezier(.16,.84,.44,1), filter .5s ease !important;
+}
+.g-card:hover .g-card-img img,
+.p-card:hover .p-cover img{
+  filter:saturate(1.08) brightness(1.02);
+}
+
+/* ---------- Hero portrait: gentle float ---------- */
+@keyframes floatInOut{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-14px); }
+}
+.hero-portrait-frame{
+  animation:floatInOut 5.5s ease-in-out infinite;
+}
+
+/* ---------- Stars, badges, counters: soft pulse-in on hover ---------- */
+.counter-item,
+.badge-num{
+  transition:transform .4s cubic-bezier(.16,.84,.44,1) !important;
+}
+.counter-item:hover,
+.badge-num:hover{
+  transform:translateY(-4px) scale(1.04);
+}
+
+/* ---------- Filter bar / tag chips ---------- */
+.filter-bar button,
+.f-chip{
+  transition:transform .3s ease, background .3s ease, color .3s ease, box-shadow .3s ease !important;
+}
+.filter-bar button:hover,
+.f-chip:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px var(--brand-glow);
+}
+.filter-bar button.active{
+  background:linear-gradient(135deg,var(--brand-1),var(--brand-2)) !important;
+  color:#0b0b0b !important;
+}
+
+/* ---------- Modal in/out feel ---------- */
+#fb-modal,
+#fb-view-modal{
+  transition:transform .4s cubic-bezier(.16,.84,.44,1), opacity .4s ease !important;
+}
+
+/* ---------- Scrollbar accent (nice small touch) ---------- */
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--brand-1),var(--brand-2));
+  border-radius:10px;
+}
+::-webkit-scrollbar-track{ background:#0a0a0a; }
+
+@media (max-width:900px){
+  .hero-portrait-frame{ animation-duration:4.5s; }
+}
+
+/* =========================================================
+   DARK SURFACES → WARM ORANGE-TINTED DARK
+   Same dark base, but every flat-black panel/overlay now
+   carries a subtle orange undertone instead of plain #111/#000,
+   so it reads as part of this theme. Text/letter colors are
+   untouched — only backgrounds shift.
+   ========================================================= */
+
+#mobile-menu{
+  background:
+    radial-gradient(circle at 85% 10%, rgba(255,122,26,.16), transparent 40%),
+    radial-gradient(circle at 10% 90%, rgba(255,122,26,.10), transparent 35%),
+    #0a0704 !important;
+}
+#mobile-menu .mm-close{
+  background:rgba(255,122,26,.12) !important;
+  border-color:rgba(255,122,26,.4) !important;
+}
+
+.a-card,
+.skill-card,
+.project-card,
+.contact-form,
+.counter-item,
+.feedback-card,
+.testimonial-card,
+.fb-card,
+.gallery-card,
+.portfolio-card,
+.work-card,
+.about-badge,
+.stat-card,
+#modal,
+#fb-modal,
+#fb-view-modal{
+  background:
+    linear-gradient(155deg, rgba(255,122,26,.07), transparent 55%),
+    #121008 !important;
+}
+
+.float-icon{
+  background:linear-gradient(155deg,#1a1409,#0f0c06) !important;
+  border-color:rgba(255,122,26,.3) !important;
+}
+
+/* Gallery hover scrim — warm dark instead of flat black */
+.g-overlay{
+  background:
+    linear-gradient(to top,
+      rgba(30,14,2,.92) 0%,
+      rgba(30,14,2,.4) 45%,
+      transparent 75%) !important;
+}
+
+.modal-close,
+.modal-prev,
+.modal-next{
+  background:rgba(255,122,26,.10) !important;
+}
+
+.burger span{ background:var(--brand-1) !important; }
+.burger{
+  background:rgba(255,122,26,.08) !important;
+  border-color:rgba(255,122,26,.25) !important;
+}
+
+/* =========================================================
+   NAV BAR — back to light yellow, shorter bar height.
+   Logo size is untouched (it already overflows the bar on
+   purpose), only the pill height/padding shrinks.
+   ========================================================= */
+header .nav-inner,
+header.scrolled .nav-inner{
+  background:#FFD84D !important;
+  border-color:#FFD84D !important;
+  box-shadow:0 8px 30px rgba(255,216,77,.18) !important;
+}
+header{ padding:16px 0 !important; }
+header.scrolled{ padding:10px 0 !important; }
+.nav-inner{
+  height:46px !important;
+  padding:8px 10px 8px 24px !important;
+}
+@media (max-width:900px){
+  .nav-inner{ height:44px !important; }
+}

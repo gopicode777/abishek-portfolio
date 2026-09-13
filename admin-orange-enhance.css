@@ -1,0 +1,70 @@
+/* =========================================================
+   ADMIN PANEL — ORANGE THEME MOTION LAYER
+   Load this AFTER admin.css.
+   ========================================================= */
+
+:root{
+  --brand-1:#FF7A1A;
+  --brand-2:#FFB347;
+  --brand-glow:rgba(255,122,26,.35);
+}
+
+.login-btn,
+.save-btn,
+.publish-btn,
+.edit-btn{
+  background:linear-gradient(135deg,var(--brand-1),var(--brand-2)) !important;
+  color:#0b0b0b !important;
+  border:none !important;
+  transition:transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease, filter .3s ease !important;
+}
+.login-btn:hover,
+.save-btn:hover,
+.publish-btn:hover,
+.edit-btn:hover{
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 16px 34px var(--brand-glow) !important;
+  filter:brightness(1.05);
+}
+.login-btn:active,
+.save-btn:active,
+.publish-btn:active,
+.edit-btn:active{
+  transform:translateY(0) scale(.96);
+}
+
+.cancel-btn,
+.delete-btn{
+  transition:transform .3s cubic-bezier(.16,.84,.44,1), box-shadow .3s ease !important;
+}
+.cancel-btn:hover,
+.delete-btn:hover{
+  transform:translateY(-2px);
+}
+
+.login-card,
+.stat-card,
+.cm-panel{
+  transition:transform .4s cubic-bezier(.16,.84,.44,1), box-shadow .4s ease, border-color .35s ease !important;
+}
+.stat-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(255,122,26,.45) !important;
+  box-shadow:0 20px 46px var(--brand-glow) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  outline:none !important;
+  border-color:var(--brand-1) !important;
+  box-shadow:0 0 0 3px rgba(255,122,26,.18) !important;
+  transition:box-shadow .3s ease, border-color .3s ease;
+}
+
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,var(--brand-1),var(--brand-2));
+  border-radius:10px;
+}
+::-webkit-scrollbar-track{ background:#050505; }
