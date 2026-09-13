@@ -57,15 +57,17 @@
 .nav-link{ position:relative; }
 .nav-link::after{
   content:'';
-  position:absolute; left:50%; bottom:-6px;
-  width:0; height:2px;
+  position:absolute; left:18px; right:18px; bottom:5px;
+  height:2px;
   background:linear-gradient(90deg,var(--brand-1),var(--brand-2));
-  transition:width .35s cubic-bezier(.16,.84,.44,1), left .35s cubic-bezier(.16,.84,.44,1);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .35s cubic-bezier(.16,.84,.44,1);
   border-radius:2px;
 }
 .nav-link:hover::after,
 .nav-link.active::after{
-  width:100%; left:0;
+  transform:scaleX(1);
 }
 
 /* ---------- Cards: lift + glow ring on hover ---------- */
@@ -221,9 +223,9 @@
 }
 
 /* =========================================================
-   NAV BAR — back to light yellow, shorter bar height.
-   Logo size is untouched (it already overflows the bar on
-   purpose), only the pill height/padding shrinks.
+   NAV BAR — light yellow, shorter bar height.
+   Logo is scaled back down so it sits fully inside the pill
+   with a clean margin above/below instead of overflowing it.
    ========================================================= */
 header .nav-inner,
 header.scrolled .nav-inner{
@@ -234,9 +236,29 @@ header.scrolled .nav-inner{
 header{ padding:16px 0 !important; }
 header.scrolled{ padding:10px 0 !important; }
 .nav-inner{
-  height:46px !important;
+  height:56px !important;
   padding:8px 10px 8px 24px !important;
 }
 @media (max-width:900px){
-  .nav-inner{ height:44px !important; }
+  .nav-inner{ height:52px !important; }
+}
+
+.logo{
+  height:56px !important;
+  display:flex !important;
+  align-items:center !important;
+  margin:0 !important;
+}
+.logo-img{
+  height:56px !important;
+  max-height:56px !important;
+  width:auto !important;
+  max-width:220px !important;
+  transform:none !important;
+  margin:0 !important;
+  object-fit:contain !important;
+}
+@media (max-width:900px){
+  .logo{ height:52px !important; }
+  .logo-img{ height:52px !important; max-height:52px !important; }
 }
